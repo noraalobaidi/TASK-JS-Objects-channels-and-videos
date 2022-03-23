@@ -89,7 +89,8 @@ function searchChannels(query, channels) {
 
   return channels.filter(
     (channel) =>
-      channel.name.includes(query) || channel.description.includes(query)
+      channel.name.toLowerCase().includes(query.toLowerCase()) ||
+      channel.description.toLowerCase().includes(query.toLowerCase())
   );
 }
 //console.log(searchChannels("the", channels));
