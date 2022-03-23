@@ -43,9 +43,7 @@ function numberOfVideos(channel) {
 function channelHasVideo(videoTitle, channel) {
   // Your code here
   // console.log(channel.videos.title);
-  return channel.videos.some(
-    (value, index, array) => value.title === videoTitle
-  );
+  return channel.videos.some((video) => video.title === videoTitle);
 }
 // console.log(channelHasVideo("The Universal S", channels[0]));
 // console.log(channelHasVideo("The Universal S", channels[1]));
@@ -58,8 +56,9 @@ function channelHasVideo(videoTitle, channel) {
  *
  * BONUS: use iteration method `.find()`
  ****************************************************************/
+// find returns one element for any type
 function getChannelByName(channelName, channels) {
-  return channels.find((value, index, array) => value.name === channelName);
+  return channels.find((channel) => channel.name === channelName);
 }
 console.log(getChannelByName("PowerfulJRE", channels));
 
@@ -73,9 +72,7 @@ console.log(getChannelByName("PowerfulJRE", channels));
  ****************************************************************/
 function getChannelByVideoTitle(videoTitle, channels) {
   // Your code here
-  return channels.find((value, index, array) =>
-    value.videos.some((value, index, array) => value.title === videoTitle)
-  );
+  return channels.find((channel) => channelHasVideo(videoTitle, channel));
 }
 //console.log(getChannelByVideoTitle("The Universal S", channels));
 
@@ -89,15 +86,11 @@ function getChannelByVideoTitle(videoTitle, channels) {
  ****************************************************************/
 function searchChannels(query, channels) {
   // Your code here
-  // let querylow = query.toLowerCase();
-  // let update = channels.map((chan) => chan.name.toLowerCase());
-  // let update2 = channels.map((chan) => chan.description.toLowerCase());
-  // let chanName = update.filter((chan) => chan.name.includes(querylow));
-  // console.log("array chan name", chanName);
-  // let chanDesc = update2.filter((chan) => chan.description.includes(querylow));
-  // console.log("array chan desc", chanDesc);
-  // let finalarr = chanName.concat(chanDesc);
-  // return finalarr;
+
+  return channels.filter(
+    (channel) =>
+      channel.name.includes(query) || channel.description.includes(query)
+  );
 }
 //console.log(searchChannels("the", channels));
 
